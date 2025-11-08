@@ -1,6 +1,7 @@
 package com.akash.event_service.controller;
 
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,14 +25,18 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class EventController {
+
     private final EventService service;
 
     @PostMapping
+    @PreAuthorize("hasRole('ORGANIZER')")
     public EventResponse create(@RequestBody @Valid EventRequest req) {
         return service.create(req);
     }
 
+
     @GetMapping
+    @PreAuthorize("hasAnyRole('USER','ORGANIZER')")
     public Page<EventResponse> list(
             @RequestParam(required = false) String category,
             @RequestParam(required = false) String location,
@@ -41,17 +46,23 @@ public class EventController {
         return service.list(category, location, page, size);
     }
 
+
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('USER','ORGANIZER')")
     public EventResponse get(@PathVariable Long id) {
         return service.get(id);
     }
 
+
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ORGANIZER')")
     public EventResponse update(@PathVariable Long id, @RequestBody @Valid EventRequest req) {
         return service.update(id, req);
     }
 
+
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ORGANIZER')")
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
