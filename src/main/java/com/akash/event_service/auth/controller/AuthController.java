@@ -2,6 +2,7 @@ package com.akash.event_service.auth.controller;
 
 import java.util.Map;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,10 +60,18 @@ public class AuthController {
             throw new RuntimeException("Invalid password");
         }
 
-        String token = jwtService.generateToken(user.getEmail());
+        UserDetails userDetails = org.springframework.security.core.userdetails.User
+                .withUsername(user.getEmail())
+                .password(user.getPassword())
+                .roles(user.getRole().name())
+                .build();
+
+        String token = jwtService.generateToken(userDetails);
+
         return Map.of(
                 "token", token,
                 "role", user.getRole().name()
         );
     }
+
 }
