@@ -35,7 +35,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         // getting the token from "Authorization" header
         final String authHeader = request.getHeader("Authorization");
-        System.out.println("AUTH HEADER => " + authHeader);
+//        System.out.println("AUTH HEADER => " + authHeader);
         final String jwt;
         final String email;
 

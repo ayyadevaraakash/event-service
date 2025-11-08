@@ -12,22 +12,11 @@ import com.akash.event_service.auth.service.JwtService;
 import com.akash.event_service.model.Event;
 
 @SpringBootApplication
-public class EventServiceApplication implements CommandLineRunner {
+public class EventServiceApplication {
 	@Autowired
 	private JwtService jwtService;
 
 	public static void main(String[] args) {
-		SpringApplication.run(EventServiceApplication.class, args);		
+		SpringApplication.run(EventServiceApplication.class, args);
 	}
-	
-
-
-	@Override
-	public void run(String... args) {
-	    String token = jwtService.generateToken("akash@gmail.com");
-	    System.out.println("Generated Token: " + token);
-	    System.out.println("Extracted: " + jwtService.extractUsername(token));
-	}
-
-
 }
