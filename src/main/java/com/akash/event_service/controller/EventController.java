@@ -36,7 +36,7 @@ public class EventController {
 
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('USER','ORGANIZER')")
+    @PreAuthorize("hasAnyRole('USER','ORGANIZER','ADMIN')")
     public Page<EventResponse> list(
             @RequestParam(required = false) String category,
             @RequestParam(required = false) String location,
