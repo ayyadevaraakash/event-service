@@ -55,30 +55,27 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
 				// Create UserDetails with correct authority
 				UserDetails userDetails = org.springframework.security.core.userdetails.User
-				        .withUsername(user.getEmail())
-				        .password(user.getPassword())
-				        .authorities("ROLE_" + user.getRole().name())
-				        .build();
+						.withUsername(user.getEmail()).password(user.getPassword())
+						.authorities("ROLE_" + user.getRole().name()).build();
 
 				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails,
 						null, userDetails.getAuthorities());
 				authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-				
-				
-				System.out.println("== JWT FILTER DEBUG ==");
-				System.out.println("Token email: " + email);
-				System.out.println("User role from DB: " + user.getRole());
-				System.out.println("Authorities to set: ROLE_" + user.getRole());
-				System.out.println("======================");
+
+//				System.out.println("== JWT FILTER DEBUG ==");
+//				System.out.println("Token email: " + email);
+//				System.out.println("User role from DB: " + user.getRole());
+//				System.out.println("Authorities to set: ROLE_" + user.getRole());
+//				System.out.println("======================");
 
 				// Store in SecurityContext
 				SecurityContextHolder.getContext().setAuthentication(authToken);
 
 				// Debug log
-				System.out.println("Authenticated user: " + email + " with role " + tokenRole);
-				
-				System.out.println("Authorities in context: " +
-					    SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+//				System.out.println("Authenticated user: " + email + " with role " + tokenRole);
+
+//				System.out.println("Authorities in context: "
+//						+ SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 
 			}
 		}

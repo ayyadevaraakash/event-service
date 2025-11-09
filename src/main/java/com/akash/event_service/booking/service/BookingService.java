@@ -46,6 +46,21 @@ public class BookingService {
 		return bookingRepo.save(booking);
 	}
 
+	public void cancelBooking(Long bookingId, String email) {
+		Booking booking = bookingRepo.findById(bookingId).orElseThrow(() -> new RuntimeException("Booking not found"));
+
+		// Ensure booking belongs to this user
+		if (!booking.getUser().getEmail().equals(email)) {
+			throw new RuntimeException("You can only cancel your own bookings");
+		}
+
+		Event event = booking.getEvent();
+		event.setAvailableSeats(event.getAvailableSeats() + booking.getSeats());
+		eventRepo.save(event);
+
+		bookingRepo.delete(booking);
+	}
+
 	public List<Booking> getUserBookings(String email) {
 		User user = userRepo.findByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
 		return bookingRepo.findByUser(user);

@@ -46,6 +46,7 @@ public class SecurityConfig {
 
                 // User booking endpoints
                 .requestMatchers("/api/v1/bookings/**").hasAuthority("ROLE_USER")
+                .requestMatchers(HttpMethod.DELETE, "/api/v1/bookings/**").hasAuthority("ROLE_USER")
 
                 // Allow viewing events to everyone
                 .requestMatchers(HttpMethod.GET, "/api/v1/events/**").permitAll()

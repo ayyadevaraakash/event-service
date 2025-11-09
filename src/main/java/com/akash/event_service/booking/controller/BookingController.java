@@ -20,14 +20,14 @@ public class BookingController {
 	@PostMapping
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	public Booking createBooking(@RequestBody BookingRequest req, Authentication auth) {
-		System.out.println("post user bookings");
+//		System.out.println("post user bookings");
 		return bookingService.bookEvent(auth.getName(), req);
 	}
 
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_USER')")
 	public List<Booking> getUserBookings(Authentication auth) {
-		System.out.println("get user bookings");
+//		System.out.println("get user bookings");
 		return bookingService.getUserBookings(auth.getName());
 	}
 
@@ -35,4 +35,13 @@ public class BookingController {
 	public String test(Authentication auth) {
 		return "Authenticated as: " + auth.getName() + " with roles: " + auth.getAuthorities();
 	}
+	
+	@DeleteMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_USER')")
+	public String cancelBooking(@PathVariable Long id, Authentication auth) {
+//		System.out.print("CAME");
+	    bookingService.cancelBooking(id, auth.getName());
+	    return "Booking cancelled successfully";
+	}
+
 }
