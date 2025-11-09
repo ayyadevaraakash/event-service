@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "835fa6bb-74a0-4af3-bfc7-8caec55d68d9",
+		"name": "event-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"akash@gmail.com\",\r\n  \"password\": \"akash123\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"krishna@gmail.com\",\r\n  \"password\": \"krishna123\",\r\n  \"role\": \"ADMIN\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_event",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9PUkdBTklaRVIiLCJzdWIiOiJ2aWpheUBnbWFpbC5jb20iLCJpYXQiOjE3NjI2NzYzNTQsImV4cCI6MTc2Mjc2Mjc1NH0.Q3TAGaI-78Tr5P9nww08SAJaIONnwUFUYG8n6ml_HMU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Java Conference 2026\",\r\n    \"category\": \"Education\",\r\n    \"location\": \"Hyderabad\",\r\n    \"startAt\": \"2026-01-20T10:00:00\",\r\n    \"endAt\": \"2026-01-20T18:00:00\",\r\n    \"price\": 999.00,\r\n    \"totalSeats\": 300,\r\n    \"availableSeats\": 300,\r\n    \"description\": \"Annual cloud & AI meetup\",\r\n    \"imageUrl\": \"https://example.com/banner.png\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/events",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show_events",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJha2FzaEBnbWFpbC5jb20iLCJpYXQiOjE3NjI2MjYxMjEsImV4cCI6MTc2MjcxMjUyMX0.z6WToqN8Mh28EdzuYlSV0GhDkPUw3FiVDNtMTDTgoT0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/events",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_event",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJha2FzaEBnbWFpbC5jb20iLCJpYXQiOjE3NjI2MjU0MTgsImV4cCI6MTc2MjcxMTgxOH0.LV9FfVP8MrUVUQC-bnw5X2kRiz4EnZF8cY6_FZ8HwF8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/events/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"events",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "book_event",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwic3ViIjoiYWthc2hAZ21haWwuY29tIiwiaWF0IjoxNzYyNjc2MzkwLCJleHAiOjE3NjI3NjI3OTB9.UC7X4k8avIq27XCARuI-VV9sOUeGRNHg1vLylhcPgRw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"eventId\": 4,\r\n  \"seats\": 210\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bookings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bookings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwic3ViIjoiYWthc2hAZ21haWwuY29tIiwiaWF0IjoxNzYyNjI3NDI0LCJleHAiOjE3NjI3MTM4MjR9.A0lb7q9Qy03ibgxmt_FBOf8ULox0Zc2pqaWb8lf56rc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bookings/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bookings",
+						"test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_booking",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwic3ViIjoiYWthc2hAZ21haWwuY29tIiwiaWF0IjoxNzYyNjcxMDExLCJleHAiOjE3NjI3NTc0MTF9.w_b8c-wSxzf9dPZNgi50c24WwUJveMybvpJo-ByUCDA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/bookings/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bookings",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
