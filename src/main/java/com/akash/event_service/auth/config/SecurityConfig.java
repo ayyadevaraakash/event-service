@@ -43,6 +43,8 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/v1/events/**").hasRole("ORGANIZER")
                 .requestMatchers(HttpMethod.PUT, "/api/v1/events/**").hasRole("ORGANIZER")
                 .requestMatchers(HttpMethod.DELETE, "/api/v1/events/**").hasRole("ORGANIZER")
+                
+                .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
 
                 // User booking endpoints
                 .requestMatchers("/api/v1/bookings/**").hasAuthority("ROLE_USER")

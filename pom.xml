@@ -37,6 +37,12 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         
+        <dependency>
+		    <groupId>com.fasterxml.jackson.datatype</groupId>
+		    <artifactId>jackson-datatype-hibernate5</artifactId>
+		</dependency>
+
+        
         <!--JWT-->
         <dependency>
 		    <groupId>io.jsonwebtoken</groupId>
