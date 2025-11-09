@@ -1,5 +1,6 @@
 package com.akash.event_service.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
@@ -12,42 +13,43 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 @Table(name = "events")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable=false, length=140)
+    @Column(nullable = false, length = 140)
     private String title;
 
-    @Column(nullable=false, length=60)
+    @Column(nullable = false, length = 60)
     private String category;
 
-    @Column(nullable=false, length=120)
+    @Column(nullable = false, length = 120)
     private String location;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private LocalDateTime startAt;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private LocalDateTime endAt;
 
-    @Column(nullable=false, precision=10, scale=2)
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private Integer totalSeats;
 
-    @Column(nullable=false)
+    @Column(nullable = false)
     private Integer availableSeats;
 
-    @Column(columnDefinition="text")
+    @Column(columnDefinition = "text")
     private String description;
 
     private String imageUrl;
 
-    @Column(nullable=false, updatable=false)
+    @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
@@ -62,6 +64,4 @@ public class Event {
     void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
-
-	
 }
